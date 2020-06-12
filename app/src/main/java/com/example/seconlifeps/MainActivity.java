@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
        fragmentTransaction.add(R.id.container, new ProfileFragment());
        fragmentTransaction.commit();
 
+
+       //    Intent i = new Intent(MainActivity.this, MainActivity.class);
+      //  startActivity(i);
 
 
     }
