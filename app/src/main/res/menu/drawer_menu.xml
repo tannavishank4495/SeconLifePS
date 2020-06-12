@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:title="Principal">
+    <menu>
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/ic_menu_home">
+        </item>
+        <item
+            android:id="@+id/profile"
+            android:title="Profile"
+            android:icon="@drawable/ic_menu_profile">
+        </item>
+        <item
+            android:id="@+id/payment"
+            android:title="Payment"
+            android:icon="@drawable/ic_menu_payment">
+        </item>
+    </menu>
+</item>
+    <item
+        android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/exit"
+                android:title="Log Out"
+                android:icon="@drawable/ic_menu_exit">
+            </item>
+
+        </menu>
+    </item>
+
+
+
+</menu>
