@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.example.seconlifeps.Fragments.MainFragment;
 import com.example.seconlifeps.Fragments.PaymentFragment;
 import com.example.seconlifeps.Fragments.ProfileFragment;
+import com.example.seconlifeps.Fragments.SheltersFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -88,6 +89,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container, new PaymentFragment());
+            fragmentTransaction.commit();
+        }
+
+        if (item.getItemId() == R.id.shelters) {
+
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container, new SheltersFragment());
             fragmentTransaction.commit();
         }
 

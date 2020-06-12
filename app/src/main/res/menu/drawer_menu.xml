@@ -24,6 +24,11 @@
         android:title="Others">
         <menu>
             <item
+                android:id="@+id/shelters"
+                android:title="Shelters Nearby"
+                android:icon="@drawable/ic_menu_pet">
+            </item>
+            <item
                 android:id="@+id/exit"
                 android:title="Log Out"
                 android:icon="@drawable/ic_menu_exit">
