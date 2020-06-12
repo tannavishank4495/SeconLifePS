@@ -38,9 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             //   Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-             //   Intent i = new Intent(LoginActivity.this, PaymentActivity.class);
-               // startActivity(i);
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                //Intent i = new Intent(LoginActivity.this, PaymentActivity.class);
+                startActivity(i);
             }
         });
     }

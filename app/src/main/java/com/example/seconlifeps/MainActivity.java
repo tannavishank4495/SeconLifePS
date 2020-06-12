@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 
 import com.example.seconlifeps.Fragments.MainFragment;
+import com.example.seconlifeps.Fragments.PaymentFragment;
 import com.example.seconlifeps.Fragments.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
        fragmentManager = getSupportFragmentManager();
        fragmentTransaction = fragmentManager.beginTransaction();
-       fragmentTransaction.add(R.id.container, new ProfileFragment());
+       fragmentTransaction.add(R.id.container, new MainFragment());
        fragmentTransaction.commit();
 
 
@@ -79,6 +80,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container, new ProfileFragment());
+            fragmentTransaction.commit();
+        }
+
+        if (item.getItemId() == R.id.payment) {
+
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container, new PaymentFragment());
             fragmentTransaction.commit();
         }
 

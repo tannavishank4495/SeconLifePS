@@ -13,53 +13,47 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="172dp"
+            android:layout_height="150dp"
             android:layout_margin="15dp"
             android:layout_weight="0"
-            android:paddingTop="50sp"
-            app:srcCompat="@drawable/profile" />
+            android:paddingTop="50dp"
+            app:srcCompat="@drawable/payment" />
+
 
         <EditText
-            android:id="@+id/reg_edtFname"
+            android:id="@+id/reg_edtHname"
             style="@style/editTextregister_style"
-            android:hint="First Name"
+            android:hint="Holder Name : Arturo Gonzalez"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/reg_edtLname"
+            android:id="@+id/reg_edtCNumber"
             style="@style/editTextregister_style"
-            android:hint="Last Name"
+            android:hint="Card Number: 1234-5678-9012-3456"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/reg_edtPhone"
+            android:id="@+id/reg_edtCcv"
             style="@style/editTextregister_style"
-            android:hint="Phone Nummber"
+            android:hint="CCV: 123"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/reg_edtDOB"
+            android:id="@+id/reg_edtExpire"
             style="@style/editTextregister_style"
-            android:hint="Date of Birth"
+            android:hint="Expiry (YY/MM) : 23/10"
             android:inputType="textEmailAddress" />
 
-        <EditText
-            android:id="@+id/reg_edtMail"
-            style="@style/editTextregister_style"
-            android:hint="E-mail"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/reg_edtCmpPassword"
-            style="@style/editTextregister_style"
-            android:hint="Password"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/reg_edtconfirmPassword"
-            style="@style/editTextregister_style"
-            android:hint="Confirm Password"
-            android:inputType="textEmailAddress|textPersonName|textPassword" />
+        <Switch
+            android:id="@+id/simpleSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:text="Use this card as default payment  "
+            android:gravity="right"
+            android:textOff="No"
+            android:textOn="Yes"
+            android:textColor= "#FFFFFF" />
 
 
         <Button
@@ -69,4 +63,5 @@
 
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

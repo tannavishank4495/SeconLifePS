@@ -20,7 +20,7 @@ public class LaunchActivity extends AppCompatActivity {
         Thread timer = new Thread(){
             public void run(){
                 try{
-                    sleep(6000);
+                    sleep(3000);
                 }catch (Exception e){
                     Log.e("Launch","Thread wait failed");
 
