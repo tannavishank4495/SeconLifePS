@@ -35,8 +35,11 @@ public class SheltersFragment extends Fragment{
         // load list
         business_list = new ArrayList<>();
     //    loadData();
+        business_list.add(new Business("Dixon 12433","L-vV","9:v00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh1));
+        business_list.add(new Business("Dixon 12543","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh2));
+        business_list.add(new Business("Dixon 1623","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh5));
         business_list.add(new Business("Dixon 12433","L-vV","9:v00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh3));
-        business_list.add(new Business("Dixon 12543","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh5));
+        business_list.add(new Business("Dixon 12543","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh2));
         business_list.add(new Business("Dixon 1623","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh5));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));    //cos it's a fragment
