@@ -40,6 +40,7 @@ public class SheltersFragment extends Fragment{
         business_list.add(new Business("Dixon 1623","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh5));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));    //cos it's a fragment
+
         adapter_shelters  = new Adapter_shelters(getContext(),business_list);
         recyclerView.setAdapter(adapter_shelters);
 
