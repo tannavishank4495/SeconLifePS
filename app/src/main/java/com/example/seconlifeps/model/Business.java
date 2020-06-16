@@ -13,7 +13,7 @@ public class Business {
     public Business(String bu_address, String bu_visitDays, String bu_visitHours, String bu_contactNo, String bu_email, String bu_price, int bu_imagenId) {
         this.bu_address = bu_address;
         this.bu_visitDays = bu_visitDays;
-        this.bu_visitDays = bu_visitHours;
+        this.bu_visitHours = bu_visitHours;
         this.bu_contactNo = bu_contactNo;
         this.bu_email = bu_email;
         this.bu_price = bu_price;

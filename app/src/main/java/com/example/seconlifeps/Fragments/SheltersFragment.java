@@ -30,27 +30,32 @@ public class SheltersFragment extends Fragment{
 
         View view    = inflater.inflate(R.layout.shelters_fragment,container,false);
 
-     //   recyclerView = view.findViewById(R.id.recyclerViewShelters);   //layout name in shelters_fragment.xml
+        recyclerView = view.findViewById(R.id.recyclerViewShelters);   //layout name in shelters_fragment.xml
 
         // load list
         business_list = new ArrayList<>();
     //    loadData();
+        business_list.add(new Business("Dixon 12433","L-vV","9:v00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh3));
+        business_list.add(new Business("Dixon 12543","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh5));
+        business_list.add(new Business("Dixon 1623","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh5));
 
-    //    showData();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));    //cos it's a fragment
+        adapter_shelters  = new Adapter_shelters(getContext(),business_list);
+        recyclerView.setAdapter(adapter_shelters);
+
+        adapter_shelters.notifyDataSetChanged();
+
+        System.out.println(business_list.size());
 
         return view;
     }
 
     public void loadData() {
 
-        business_list.add(new Business("Dixon 123","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh1));
-        business_list.add(new Business("Dixon 123","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh1));
-        business_list.add(new Business("Dixon 123","L-V","9:00-17:00","647-648-0714","123@123.com","$123.00 CA",R.drawable.petsh1));
+
     }
 
     public void showData() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));    //cos it's a fragment
-        adapter_shelters  = new Adapter_shelters(getContext(),business_list);
-        recyclerView.setAdapter(adapter_shelters);
+
     }
 }

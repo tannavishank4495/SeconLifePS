@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         drawerLayout.closeDrawer(GravityCompat.START);
+
         if (item.getItemId() == R.id.home) {
 
             fragmentManager = getSupportFragmentManager();

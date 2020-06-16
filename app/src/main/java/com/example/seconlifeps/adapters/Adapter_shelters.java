@@ -15,6 +15,8 @@ import com.example.seconlifeps.model.Business;
 
 import java.util.ArrayList;
 
+//import android.R.layout;
+
 public class Adapter_shelters extends RecyclerView.Adapter<Adapter_shelters.ViewHolder> implements View.OnClickListener{
 
     ArrayList<Business> model;
@@ -25,10 +27,10 @@ public class Adapter_shelters extends RecyclerView.Adapter<Adapter_shelters.View
     private View.OnClickListener listener;
 
 
-    public Adapter_shelters(Context context, ArrayList<Business> model) {
+    public Adapter_shelters(Context context, ArrayList<Business> lista) {
 
         this.inflater = LayoutInflater.from(context);
-        this.model    =  model;
+        this.model    =  lista;
 
     }
 
@@ -36,6 +38,7 @@ public class Adapter_shelters extends RecyclerView.Adapter<Adapter_shelters.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shelters_list,parent,false);
         View view = inflater.inflate(R.layout.shelters_list,parent,false);
 
         view.setOnClickListener(this);
@@ -46,29 +49,30 @@ public class Adapter_shelters extends RecyclerView.Adapter<Adapter_shelters.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        String adreess = model.get(position).getBu_address();
+        String adress = model.get(position).getBu_address();
         String days    = model.get(position).getBu_visitDays();
         String hours   = model.get(position).getBu_visitHours();
         String contact = model.get(position).getBu_contactNo();
         String email   = model.get(position).getBu_email();
         String price   = model.get(position).getBu_price();
-        int    imagen  = model.get(position).getBu_imagenId();
+        int img  = model.get(position).getBu_imagenId();
 
-        holder.address.setText(adreess);
+        holder.address.setText(adress);
         holder.visitDays.setText(days);
         holder.visitHours.setText(hours);
         holder.contactNo.setText(contact);
         holder.email.setText(email);
         holder.price.setText(price);
-        holder.image.setImageResource(imagen);
+        holder.img.setImageResource(img);
 
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return model.size();
     }
+
 
     @Override
     public void onClick(View view) {
@@ -77,7 +81,6 @@ public class Adapter_shelters extends RecyclerView.Adapter<Adapter_shelters.View
         {
             listener.onClick(view);
         }
-
     }
 
     public void setOnClickListener(View.OnClickListener listener){
@@ -90,7 +93,7 @@ public class Adapter_shelters extends RecyclerView.Adapter<Adapter_shelters.View
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView address, visitDays, visitHours, contactNo, email, price;
-        ImageView image;
+        ImageView img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -102,7 +105,7 @@ public class Adapter_shelters extends RecyclerView.Adapter<Adapter_shelters.View
             contactNo  = itemView.findViewById(R.id.contact_number);
             email  = itemView.findViewById(R.id.contact_email);
             price  = itemView.findViewById(R.id.price);
-            image  = itemView.findViewById(R.id.simpleSwitch);
+            img = itemView.findViewById(R.id.image_shelter);
 
 
         }
