@@ -18,6 +18,20 @@ public class PaymentFragment extends Fragment{
 
         View view = inflater.inflate(R.layout.payment_fragment,container,false);
 
+
+        //VALIDATIONS
+
+        //NOT VALID
+
+        // VALID
+
+
+
+
+
+
+
+
         return view;
     }
 }

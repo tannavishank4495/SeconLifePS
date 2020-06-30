@@ -17,10 +17,13 @@ import android.view.MenuItem;
 import com.example.seconlifeps.Fragments.MainFragment;
 import com.example.seconlifeps.Fragments.PaymentFragment;
 import com.example.seconlifeps.Fragments.ProfileFragment;
+import com.example.seconlifeps.Fragments.ReviewsFragment;
 import com.example.seconlifeps.Fragments.SheltersFragment;
+import com.example.seconlifeps.interfaces.iShelters;
+import com.example.seconlifeps.model.Business;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, iShelters {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -30,6 +33,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Fragment Manager
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+
+    //Reference to destination Fragment (detailed Shelter)
+    ReviewsFragment reviewsFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +108,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.commit();
         }
 
+        if (item.getItemId() == R.id.users) {
+
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container, new SheltersFragment());
+            fragmentTransaction.commit();
+
+
+            Intent i = new Intent(MainActivity.this, ListNotesActivity.class);
+            //Intent i = new Intent(LoginActivity.this, PaymentActivity.class);
+            startActivity(i);
+        }
+
         return false;
+    }
+
+    @Override
+    public void sendShelter(Business business) {
+        //logic here to send the object
+        reviewsFragment = new ReviewsFragment();
+        // bundle object to transport data
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("objecto",business);
+        reviewsFragment.setArguments(bundle);
+
+        //open fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, reviewsFragment);
+        fragmentTransaction.addToBackStack("Return");
+        fragmentTransaction.commit();
+
     }
 }

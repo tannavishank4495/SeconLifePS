@@ -33,6 +33,11 @@
                 android:title="Log Out"
                 android:icon="@drawable/ic_menu_exit">
             </item>
+            <item
+                android:id="@+id/users"
+                android:title="Users"
+                android:icon="@drawable/ic_menu_exit">
+            </item>
 
         </menu>
     </item>

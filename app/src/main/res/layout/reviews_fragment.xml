@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="60dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shelter Details"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/shelterDetail_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/petsh1"
+        android:paddingTop="10dp"/>
+
+    <TextView
+        android:id="@+id/shelterDetail_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shelter Details 1"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_marginLeft="10dp"/>
+    <TextView
+        android:id="@+id/shelterDetail_text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shelter Details 2"
+        android:textSize="30dp"
+        android:gravity="center"/>
+
+</LinearLayout>

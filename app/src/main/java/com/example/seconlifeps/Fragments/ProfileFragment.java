@@ -18,6 +18,18 @@ public class ProfileFragment extends Fragment{
 
         View view = inflater.inflate(R.layout.profile_fragment,container,false);
 
+
+
+        //VALIDATIONS
+
+        //NOT VALID
+
+        // VALID
+
+
+
+
+
         return view;
     }
 }
