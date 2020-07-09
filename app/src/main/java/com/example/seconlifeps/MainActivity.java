@@ -134,7 +134,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new SheltersFragment());
+            SheltersFragment sheltersFragment = new SheltersFragment();
+            // argument
+            Bundle arguments = new Bundle();
+            arguments.putString("userId", userId);
+            sheltersFragment.setArguments(arguments);
+            fragmentTransaction.replace(R.id.container, sheltersFragment);
             fragmentTransaction.commit();
         }
 

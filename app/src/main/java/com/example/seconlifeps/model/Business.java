@@ -10,6 +10,8 @@ public class Business implements Serializable {
     private String bu_email;
     private String bu_price;
     private int    bu_imagenId;
+    private Double bu_lat;
+    private Double bu_lon;
 
 
    // sql = " CREATE TABLE " + TBName_Business + "(bu_id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
@@ -18,7 +20,7 @@ public class Business implements Serializable {
 
 
 
-    public Business(String bu_address, String bu_visitDays, String bu_visitHours, String bu_contactNo, String bu_email, String bu_price, int bu_imagenId) {
+    public Business(String bu_address, String bu_visitDays, String bu_visitHours, String bu_contactNo, String bu_email, String bu_price, int bu_imagenId, Double bu_lat, Double bu_lon) {
         this.bu_address = bu_address;
         this.bu_visitDays = bu_visitDays;
         this.bu_visitHours = bu_visitHours;
@@ -26,7 +28,11 @@ public class Business implements Serializable {
         this.bu_email = bu_email;
         this.bu_price = bu_price;
         this.bu_imagenId = bu_imagenId;
+        this.bu_lat = bu_lat;
+        this.bu_lon = bu_lon;
     }
+
+
 
     public Business() {
 
@@ -86,5 +92,21 @@ public class Business implements Serializable {
 
     public void setBu_imagenId(int bu_imagenId) {
         this.bu_imagenId = bu_imagenId;
+    }
+
+    public Double getBu_lat() {
+        return bu_lat;
+    }
+
+    public void setBu_lat(Double bu_lat) {
+        this.bu_lat = bu_lat;
+    }
+
+    public Double getBu_lon() {
+        return bu_lon;
+    }
+
+    public void setBu_lon(Double bu_lon) {
+        this.bu_lon = bu_lon;
     }
 }

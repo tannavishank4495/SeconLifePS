@@ -64,10 +64,6 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
 
 
-
-
-
-
         return view;
     }
 
@@ -80,14 +76,12 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             checkLocationPermission();
         }
 
-
         mapView = view.findViewById(R.id.mapView);
         if (mapView != null) {
             mapView.onCreate(null);
             mapView.onResume();
             mapView.getMapAsync(this);
         }
-
 
     }
 
@@ -114,6 +108,8 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                     currentLocation = location;
                     Toast.makeText(getActivity(), currentLocation.getLatitude()+ " " + currentLocation.getLongitude(),Toast.LENGTH_LONG).show();
                     Log.d("Current Location",currentLocation.getLatitude()+" "+currentLocation.getLongitude());
+                    // Update record
+                    saveUserLocation();
                 }
 
 
@@ -123,10 +119,11 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
     private void saveUserLocation() {
 
+        mySqliteHelper = new SQLiteHelper(this.getContext(),"RECORDDB1.sqlite",null,1);
 
         try {
             mySqliteHelper.updateUserLocation(currentLocation.getLatitude(),currentLocation.getLongitude(),Integer.parseInt(userId));
-
+            Log.d("User Location Updated", userId);
         }
         catch (Exception e)
         {
@@ -134,7 +131,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         }
 
         Toast.makeText(getActivity(),"User Location Updated!", Toast.LENGTH_SHORT).show();
-        Log.d("User Location Updated", userId.toString());
+
 
 
     }
@@ -149,8 +146,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
         getUserLocation();
-        // Update record
-        saveUserLocation();
+
 
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
