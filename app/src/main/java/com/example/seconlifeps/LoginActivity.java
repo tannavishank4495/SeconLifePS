@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,8 @@ import com.example.seconlifeps.model.User;
 public class LoginActivity extends AppCompatActivity {
 
     public static SQLiteHelper mySqliteHelper;
+
+    String userId;
 
     EditText etempemail, etpwd;
     Button btnlogin, btnreg;
@@ -55,14 +58,26 @@ public class LoginActivity extends AppCompatActivity {
                 pwd   = etpwd.getText().toString().trim();
 
                 // Validate
+
                 if (mail.isEmpty())
                 {
-
-                    Log.d("Mail Empty:", etempemail.toString());
-                    Toast.makeText(LoginActivity.this,"Please complete all fields", Toast.LENGTH_SHORT).show();
+                    Log.d("Mail Empty:", mail.toString());
+                    Toast.makeText(LoginActivity.this,"Please enter valid email address", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                if(!Patterns.EMAIL_ADDRESS.matcher(mail).matches())
+                { Log.d("Mail Empty:", etempemail.toString());
+                    Toast.makeText(LoginActivity.this,"Please enter valid email address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(pwd.isEmpty())
+                {
+                    Log.d("Password Empty:", etpwd.toString());
+                    Toast.makeText(LoginActivity.this,"Please Enter Your Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 // Not valid cases
                // String sqlstr = "SELECT * FROM Notes WHERE category = '"+ catName.trim()+"'" + sqlOrder;
@@ -88,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 while(cursor.moveToNext())
                 {
-                    int id       = cursor.getInt(0);
+                    Integer id       = cursor.getInt(0);
                     String email = cursor.getString(1);
                     //String fname  = cursor.getString(2);
                     //String lname  = cursor.getString(3);
@@ -98,14 +113,15 @@ public class LoginActivity extends AppCompatActivity {
                     //// add to list
                     //myListNote.add(new User(id,email,"123",fname,lname,"11/11/11",image,"11.11","12.2","11/11/11"));
                     Log.d("User:",email);
+                    userId = id.toString();
                 }
 
-                Toast.makeText(LoginActivity.this,"No Notes found", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this,"Welcome!", Toast.LENGTH_SHORT).show();
                 // Create global/session User object
 
 
-
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                i.putExtra("USER_ID",userId);
                 startActivity(i);
             }
         });

@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 
@@ -37,12 +38,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //Reference to destination Fragment (detailed Shelter)
     ReviewsFragment reviewsFragment;
 
+    //Session variables
+
+    public String userId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+
+        userId = getIntent().getStringExtra("USER_ID");
+        Log.d("User in Main:",userId.toString());
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,8 +72,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
        fragmentManager = getSupportFragmentManager();
        fragmentTransaction = fragmentManager.beginTransaction();
-       fragmentTransaction.add(R.id.container, new MainFragment());
+       MainFragment mainFragment = new MainFragment();
+       // arguments
+       Bundle arguments = new Bundle();
+       arguments.putString("userId", userId);
+       mainFragment.setArguments(arguments);
+       fragmentTransaction.add(R.id.container, mainFragment);
        fragmentTransaction.commit();
+
 
 
        //    Intent i = new Intent(MainActivity.this, MainActivity.class);
@@ -81,14 +97,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new MainFragment());
+            MainFragment mainFragment = new MainFragment();
+            Bundle arguments = new Bundle();
+            arguments.putString("userId", userId);
+            mainFragment.setArguments(arguments);
+            fragmentTransaction.replace(R.id.container, mainFragment);
             fragmentTransaction.commit();
         }
         if (item.getItemId() == R.id.profile) {
 
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new ProfileFragment());
+            ProfileFragment profileFragment = new ProfileFragment();
+            // argument
+            Bundle arguments = new Bundle();
+            arguments.putString("userId", userId);
+            profileFragment.setArguments(arguments);
+            fragmentTransaction.replace(R.id.container, profileFragment);
             fragmentTransaction.commit();
         }
 
@@ -96,7 +121,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new PaymentFragment());
+            PaymentFragment paymentFragment = new PaymentFragment();
+            // argument
+            Bundle arguments = new Bundle();
+            arguments.putString("userId", userId);
+            paymentFragment.setArguments(arguments);
+            fragmentTransaction.replace(R.id.container, paymentFragment);
             fragmentTransaction.commit();
         }
 

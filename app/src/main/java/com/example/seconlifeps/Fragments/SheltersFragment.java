@@ -59,11 +59,6 @@ public class SheltersFragment extends Fragment{
 
 
 
-
-
-
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));    //cos it's a fragment
 
         adapter_shelters  = new Adapter_shelters(getContext(),business_list);

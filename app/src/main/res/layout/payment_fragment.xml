@@ -23,25 +23,25 @@
         <EditText
             android:id="@+id/reg_edtHname"
             style="@style/editTextregister_style"
-            android:hint="Holder Name : Arturo Gonzalez"
+            android:hint="Holder Name :"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/reg_edtCNumber"
             style="@style/editTextregister_style"
-            android:hint="Card Number: 1234-5678-9012-3456"
+            android:hint="Card Number:"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/reg_edtCcv"
             style="@style/editTextregister_style"
-            android:hint="CCV: 123"
+            android:hint="CCV:"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/reg_edtExpire"
             style="@style/editTextregister_style"
-            android:hint="Expiry (YY/MM) : 23/10"
+            android:hint="Expiry (YY/MM) :"
             android:inputType="textEmailAddress" />
 
         <Switch

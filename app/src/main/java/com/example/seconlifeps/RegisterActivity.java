@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,28 +42,60 @@ public class RegisterActivity extends AppCompatActivity {
                 "us_email VARCHAR, us_password VARCHAR, us_firstName VARCHAR, us_lastName VARCHAR, us_dob DATE , \n" +
                 "us_image BLOB, us_latitude VARCHAR, us_longitude VARCHAR, us_lastLogin DATE)";
 
-//        "CREATE TABLE IF NOT EXISTS Notes(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-//                "title VARCHAR, desc VARCHAR, date DATE , image BLOB, category VARCHAR, audio VARCHAR)"
-
-
         mySqliteHelper.queryData(sql);
-
-
-
 
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //VALIDATIONS
-                String email,pwd;
+                String email,pwd,cpwd;
                 email = etemail.getText().toString().trim();
                 pwd   = etpwd.getText().toString().trim();
-
-
+                cpwd = etcpwd.getText().toString().trim();
 
 
                 //NOT VALID
+                if (email.isEmpty())
+                {
+                    Log.d("Mail Empty:", etemail.toString());
+                    Toast.makeText(RegisterActivity.this,"Please enter valid email address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+                { Log.d("Mail Empty:", etemail.toString());
+                    Toast.makeText(RegisterActivity.this,"Please enter valid email address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(pwd.isEmpty())
+                {
+                    Log.d("Password Empty:", etpwd.toString());
+                    Toast.makeText(RegisterActivity.this,"Please Enter Your Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (pwd.length()<= 7)
+                {
+                    Log.d("Password Empty:", etpwd.toString());
+                    Toast.makeText(RegisterActivity.this,"Password should be 7 charcters long", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(cpwd.isEmpty())
+                {
+                    Log.d("Password Empty:", etcpwd.toString());
+                    Toast.makeText(RegisterActivity.this,"Please Enter Your Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!cpwd.equals(pwd))
+                {
+                    Log.d("Password Wrong:", etcpwd.toString());
+                    Toast.makeText(RegisterActivity.this,"Password do not match", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
 
                 // VALID
 
@@ -83,17 +116,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                 try {
                     mySqliteHelper.insertUser(etemail.getText().toString().trim(), etpwd.getText().toString().trim());
-                    Toast.makeText(RegisterActivity.this,"User Added Successfully",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,"User created Successfully",Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e)
                 {
                     e.printStackTrace();
                 }
-
-
-
-
-
 
 
                 //Intent i = new Intent(RegisterActivity.this, MainActivity.class);

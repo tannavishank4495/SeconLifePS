@@ -20,50 +20,50 @@
             app:srcCompat="@drawable/profile" />
 
         <EditText
-            android:id="@+id/reg_edtFname"
+            android:id="@+id/pro_edtFname"
             style="@style/editTextregister_style"
             android:hint="First Name"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/reg_edtLname"
+            android:id="@+id/pro_edtLname"
             style="@style/editTextregister_style"
             android:hint="Last Name"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/reg_edtPhone"
+            android:id="@+id/pro_edtPhone"
             style="@style/editTextregister_style"
             android:hint="Phone Nummber"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/reg_edtDOB"
+            android:id="@+id/pro_edtDOB"
             style="@style/editTextregister_style"
             android:hint="Date of Birth"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/reg_edtMail"
+            android:id="@+id/pro_edtMail"
             style="@style/editTextregister_style"
             android:hint="E-mail"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/reg_edtCmpPassword"
+            android:id="@+id/pro_edtPassword"
             style="@style/editTextregister_style"
             android:hint="Password"
             android:inputType="textPassword" />
 
         <EditText
-            android:id="@+id/reg_edtconfirmPassword"
+            android:id="@+id/pro_edtConfirmPassword"
             style="@style/editTextregister_style"
             android:hint="Confirm Password"
             android:inputType="textEmailAddress|textPersonName|textPassword" />
 
 
         <Button
-            android:id="@+id/reg_btnRegister"
+            android:id="@+id/pro_btnUpdate"
             style="@style/buttonregister_style"
             android:text="Update" />
 
