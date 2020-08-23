@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,8 +22,10 @@ public class PaymentFragment extends Fragment{
 
     public static SQLiteHelper mySqliteHelper;
     String userId;
+    Boolean paymentRecord;
 
     EditText etname, etcnumber, edtCcv,edtdate;
+    Switch swDefa;
     Button btnUpdate;
 
     @Nullable
@@ -31,11 +34,14 @@ public class PaymentFragment extends Fragment{
 
         View view = inflater.inflate(R.layout.payment_fragment,container,false);
 
-        etname = view.findViewById(R.id.reg_edtHname);
-        etcnumber= view.findViewById(R.id.reg_edtCNumber);
-        edtCcv = view.findViewById(R.id.reg_edtCcv);
-        edtdate = view.findViewById(R.id.reg_edtExpire);
+        etname    = view.findViewById(R.id.reg_edtHname);
+        etcnumber = view.findViewById(R.id.reg_edtCNumber);
+        edtCcv    = view.findViewById(R.id.reg_edtCcv);
+        edtdate   = view.findViewById(R.id.reg_edtExpire);
+        swDefa = view.findViewById(R.id.simpleSwitch);
         btnUpdate = view.findViewById(R.id.reg_btnRegister);
+
+        paymentRecord = false;
 
         userId="0";
         Bundle bundle = this.getArguments();
@@ -48,10 +54,12 @@ public class PaymentFragment extends Fragment{
         //Verifying db
         mySqliteHelper = new SQLiteHelper(this.getContext(),"RECORDDB1.sqlite",null,1);
 
+    //    String sql = " DROP TABLE UserPayment";
         String sql = " CREATE TABLE IF NOT EXISTS UserPayment (up_id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "us_id INTEGER, up_holderName VARCHAR, up_cardNumber VARCHAR, up_ccv VARCHAR, up_expire VARCHAR, up_default BOOLEAN )";
+                "us_id INTEGER, up_holderName VARCHAR, up_cardNumber VARCHAR, up_ccv VARCHAR, up_expire VARCHAR, up_default INTEGER)";
         mySqliteHelper.queryData(sql);
 
+        ///*
         // Search user by id.
         String sqlstr = "SELECT up_id, us_id, up_holderName, up_cardNumber, up_ccv, up_expire, up_default " +
                 "FROM UserPayment WHERE us_id = " + userId;
@@ -60,6 +68,7 @@ public class PaymentFragment extends Fragment{
         int c = cursor.getCount();
         if (c == 0)
         {
+            paymentRecord = false;
             Log.d("User:","NOT FOUND");
             System.out.println("Users: "+c);
             Toast.makeText(getActivity(),"No User found", Toast.LENGTH_SHORT).show();
@@ -67,7 +76,7 @@ public class PaymentFragment extends Fragment{
             // Create record
             try {
                 mySqliteHelper.insertUserPayment(Integer.parseInt(userId));
-                Toast.makeText(getActivity(),"User created Successfully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Payment record created Successfully",Toast.LENGTH_SHORT).show();
             }
             catch (Exception e)
             {
@@ -76,40 +85,53 @@ public class PaymentFragment extends Fragment{
 
             //
         }
-        // User found
         else
         {
+            // User found
+            paymentRecord = true;
             Log.d("User:","FOUND");
             System.out.println("UserPayment: "+c);
         }
-        while(cursor.moveToNext())
-        {
 
+        if (paymentRecord)
+        {
+            Log.d("PaymentRecord","found");
+        }
+        else
+        {
+            Log.d("PaymentRecord","not found and created");
+        }
+
+        while(cursor.moveToNext() && paymentRecord)
+        {
         //    up_id, us_id, up_holderName, up_cardNumber, up_ccv, up_expire, up_default
             int uid       = cursor.getInt(0);
             int pid       = cursor.getInt(1);
-            String email = cursor.getString(1);
-            String pwd  = cursor.getString(2);
-            String fname  = cursor.getString(3);
-            String lname  = cursor.getString(4);
-            String dob  = cursor.getString(5);
-            //byte[] image = cursor.getBlob(4);
-            //String audio   = cursor.getString(6);
+            String name = cursor.getString(2);
+            String number = cursor.getString(3);
+            String ccv  = cursor.getString(4);
+            String exipry  = cursor.getString(5);
+            Integer defa  = cursor.getInt(6);
 
-            // Display record to controls
-           // etemail.setText(cursor.getString(1));
-           // etpwd.setText(cursor.getString(2));
-           // etcpwd.setText(cursor.getString(2));
-            //etfname.setText(cursor.getString(3));
-            //etlname.setText(cursor.getString(4));
-            //etphone.setText("647-434-4323");
-            //etdob.setText(cursor.getString(5));
+            etname.setText(name);
+            etcnumber.setText(number);
+            edtCcv.setText(ccv);
+            edtdate.setText(exipry);
+            if (defa == 1) {
+                swDefa.setTextOn("ON");
+                swDefa.setChecked(true);
+            }
+            else
+            {
+                swDefa.setTextOff("OFF");
+            }
 
-            Log.d("User:",email);
+
+            Log.d("User:",String.valueOf(defa));
         }
 
 
-
+//*/
 
         //VALIDATIONS
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -117,10 +139,18 @@ public class PaymentFragment extends Fragment{
             public void onClick(View view) {
                 //VALIDATIONS
                 String ename, cnum, ccv,cdate;
+                Integer defa;
                 ename = etname.getText().toString().trim();
                 cnum = etcnumber.getText().toString().trim();
                 ccv = edtCcv.getText().toString().trim();
                 cdate = edtdate.getText().toString().trim();
+
+
+                if (swDefa.isChecked())
+                    defa = 1;
+                else
+                    defa = 0;
+
                 if (ename.isEmpty())
                 {
                     Log.d("Name Empty:", etname.toString());
@@ -145,6 +175,19 @@ public class PaymentFragment extends Fragment{
                //     Toast.makeText(getActivity(),"Please Enter valid Date", Toast.LENGTH_SHORT).show();
                //     return;
                // }
+
+                try {
+                    mySqliteHelper.updatePayment(ename,cnum,ccv,cdate,defa,Integer.valueOf(userId));
+                    Log.d("Payment Updated", userId);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+                Toast.makeText(getActivity(),"Payment Data Updated!", Toast.LENGTH_SHORT).show();
+
+
             }
             //NOT VALID
             // VALID

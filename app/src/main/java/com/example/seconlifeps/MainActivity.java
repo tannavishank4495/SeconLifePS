@@ -1,6 +1,7 @@
 package com.example.seconlifeps;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,6 +20,7 @@ import com.example.seconlifeps.Fragments.MainFragment;
 import com.example.seconlifeps.Fragments.PaymentFragment;
 import com.example.seconlifeps.Fragments.ProfileFragment;
 import com.example.seconlifeps.Fragments.ReviewsFragment;
+import com.example.seconlifeps.Fragments.ShelterDetailFragment;
 import com.example.seconlifeps.Fragments.SheltersFragment;
 import com.example.seconlifeps.interfaces.iShelters;
 import com.example.seconlifeps.model.Business;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //Reference to destination Fragment (detailed Shelter)
     ReviewsFragment reviewsFragment;
-
+    ProfileFragment profileFragment;
     //Session variables
 
     public String userId;
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            ProfileFragment profileFragment = new ProfileFragment();
+            profileFragment = new ProfileFragment();
             // argument
             Bundle arguments = new Bundle();
             arguments.putString("userId", userId);
@@ -145,10 +147,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (item.getItemId() == R.id.users) {
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new SheltersFragment());
-            fragmentTransaction.commit();
+         //   fragmentManager = getSupportFragmentManager();
+         //   fragmentTransaction = fragmentManager.beginTransaction();
+         //   fragmentTransaction.replace(R.id.container, new ShelterDetailFragment());
+         //   fragmentTransaction.commit();
 
 
             Intent i = new Intent(MainActivity.this, ListNotesActivity.class);
@@ -172,8 +174,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, reviewsFragment);
-        fragmentTransaction.addToBackStack("Return");
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(profileFragment!=null)
+            profileFragment.onActivityResult(requestCode,resultCode,data);
     }
 }

@@ -3,6 +3,8 @@ package com.example.seconlifeps.model;
 import java.io.Serializable;
 
 public class Business implements Serializable {
+    private Integer bu_id;
+    private String bu_name;
     private String bu_address;
     private String bu_visitDays;
     private String bu_visitHours;
@@ -13,14 +15,9 @@ public class Business implements Serializable {
     private Double bu_lat;
     private Double bu_lon;
 
-
-   // sql = " CREATE TABLE " + TBName_Business + "(bu_id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-   //         "bu_name VARCHAR, bu_address VARCHAR, bu_lastName VARCHAR, bu_latitude VARCHAR, bu_longitude VARCHAR, bu_contactNo VARCHAR,\n" +
-   //         "bu_email VARCHAR,\n" + "bu_description,\n" + "bu_price DECIMAL , \n" + "bu_visitDays VARCHAR,\n" + "bu_vi
-
-
-
-    public Business(String bu_address, String bu_visitDays, String bu_visitHours, String bu_contactNo, String bu_email, String bu_price, int bu_imagenId, Double bu_lat, Double bu_lon) {
+    public Business(Integer bu_id, String bu_name, String bu_address, String bu_visitDays, String bu_visitHours, String bu_contactNo, String bu_email, String bu_price, int bu_imagenId, Double bu_lat, Double bu_lon) {
+        this.bu_id = bu_id;
+        this.bu_name = bu_name;
         this.bu_address = bu_address;
         this.bu_visitDays = bu_visitDays;
         this.bu_visitHours = bu_visitHours;
@@ -32,10 +29,24 @@ public class Business implements Serializable {
         this.bu_lon = bu_lon;
     }
 
-
-
     public Business() {
 
+    }
+
+    public Integer getBu_id() {
+        return bu_id;
+    }
+
+    public void setBu_id(Integer bu_id) {
+        this.bu_id = bu_id;
+    }
+
+    public String getBu_name() {
+        return bu_name;
+    }
+
+    public void setBu_name(String bu_name) {
+        this.bu_name = bu_name;
     }
 
     public String getBu_address() {

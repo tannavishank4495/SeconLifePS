@@ -44,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         etempemail = findViewById(R.id.login_edtUserEmail);
         etpwd = findViewById(R.id.login_edtPassword);
 
+//        etempemail.setText("jays95jp@gmail.com");
+//        etpwd.setText("Jay@1234");
+
         btnlogin = findViewById(R.id.login_btnLogin);
         btnreg = findViewById(R.id.login_btnRegistration);
 
